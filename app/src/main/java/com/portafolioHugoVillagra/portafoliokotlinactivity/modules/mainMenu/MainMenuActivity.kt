@@ -1,5 +1,6 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable.Orientation
@@ -17,6 +18,7 @@ import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityMainMenuBinding
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.viewModels.MainMenuViewModel
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.RandomCatsImageActivity
 
 class MainMenuActivity : AppCompatActivity() {
 
@@ -82,7 +84,8 @@ class MainMenuActivity : AppCompatActivity() {
             binding.optionMenuContainerLayout.addView(linearLayout)
 
             linearLayout.setOnClickListener {
-
+                val intent = Intent(this,RandomCatsImageActivity::class.java)
+                startActivity(intent)
             }
         }
     }
