@@ -29,8 +29,7 @@ class ImageCatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentImageCatBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
 
