@@ -36,7 +36,7 @@ class ImageCatFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ImageCatViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ImageCatViewModel::class.java]
         // TODO: Use the ViewModel
 
     }
