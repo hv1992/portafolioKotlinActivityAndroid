@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="TextView"
+            android:textColor = "@color/white"
             android:textAlignment="center" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

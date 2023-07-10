@@ -47,7 +47,13 @@ class ListCatImageRecyclerViewAdapter(private val dataSet: ArrayList<CatImageRec
         //Aqui es donde configuramos los elementos de la fila
 
         //Agregamos el texto
-        viewHolder.informationCat.text = dataSet[position].informationCat
+
+        if (dataSet[position].informationCat == "null") {
+            viewHolder.informationCat.text = ""
+        } else {
+            viewHolder.informationCat.text = dataSet[position].informationCat
+        }
+
 
         //Agregamos la imagen
         viewHolder.imageCat.setImageBitmap(dataSet[position].imageCatBitmap)
