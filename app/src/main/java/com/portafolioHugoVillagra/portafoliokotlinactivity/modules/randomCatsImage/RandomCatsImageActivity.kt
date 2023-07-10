@@ -1,9 +1,12 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityRandomCatsImageBinding
@@ -60,36 +63,29 @@ class RandomCatsImageActivity : AppCompatActivity() {
         }
     }
 
-    fun createListCats() {
-        val reciclerView = binding.reclyclerViewImageContainer
-
+    private fun createListCats() {
         this.viewModel.listCats.let {
-            for (cat in it!!) {
-                val imageCatDownloader = viewModel.imageCatDownloader().create(CatApi::class.java)
-                GlobalScope.launch {
+            GlobalScope.launch {
+                for (cat in it!!) {
+                    val imageCatDownloader = viewModel.imageCatDownloader().create(CatApi::class.java)
+
                     val urlImageCat = viewModel.getUrlDownloadCat(cat.id)
                     //Se realiza la llamada para obtener la imagen del gato
                     val result = imageCatDownloader.downloadImageCat(urlImageCat)
                     if (result != null) {
                         if(result.isSuccessful) { //Esto es para comprobar si es exitoso o no
                             val resultBody = result.body()?.byteStream() //Aqui se obtiene los bytes de la imagen obtenida
+                            val bitmapImageCat = BitmapFactory.decodeStream(resultBody)
+                            viewModel.addInformationCatToNewRowRecyclerView(bitmapImageCat,cat.owner)
+                            Log.d("Cantidad de gatos asincrono",viewModel.listRowCatForRecycler.size.toString())
                         }
-
                     }
                 }
+                Log.d("Cantidad de gatos",viewModel.listRowCatForRecycler.size.toString())
             }
         }
-
     }
 
-    fun createContainerLayout(cat : CatModel) {
-        var linearLayoutContainer  = LinearLayout(this)
-        linearLayoutContainer.orientation = LinearLayout.VERTICAL
-
-        var image = ImageView(this)
-        image.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
-
-    }
 
     //Aqui es donde se configura la acción del botón volver del action bar.
     override fun onSupportNavigateUp(): Boolean {

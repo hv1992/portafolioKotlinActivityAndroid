@@ -1,6 +1,8 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.viewModels
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatImageRecyclerModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,6 +18,7 @@ class RandomCatsImageActivityViewModel : ViewModel(){
     val limitCats : Int = 10
 
     var listCats : List<CatModel>? = null
+    var listRowCatForRecycler : ArrayList<CatImageRecyclerModel> = arrayListOf()
 
     fun catDownloader() : Retrofit {
         return Retrofit.Builder().baseUrl(urlBaseBuilder)
@@ -32,5 +35,10 @@ class RandomCatsImageActivityViewModel : ViewModel(){
 
     fun getUrlDownloadCat(idCat : String) : String {
         return this.urlDownloadCat + idCat
+    }
+
+    fun addInformationCatToNewRowRecyclerView(catImage : Bitmap,informationCat : String) {
+        var catRowRecyclerView = CatImageRecyclerModel(catImage,informationCat)
+        this.listRowCatForRecycler.add(catRowRecyclerView)
     }
 }
