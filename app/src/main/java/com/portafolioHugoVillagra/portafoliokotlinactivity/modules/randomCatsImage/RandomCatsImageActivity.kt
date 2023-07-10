@@ -103,7 +103,7 @@ class RandomCatsImageActivity : AppCompatActivity() {
             //Seria que contiene los delegates
             val imageCatRecyclerAdapter = ListCatImageRecyclerViewAdapter(viewModel.listRowCatForRecycler)
             binding.reclyclerViewImageContainer.adapter = imageCatRecyclerAdapter
-            binding.progressBarLoadCats.visibility = View.GONE
+            binding.linearLayoutBarContainer.visibility = View.GONE
         })
     }
 
