@@ -2,8 +2,10 @@ package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsIm
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -101,6 +103,7 @@ class RandomCatsImageActivity : AppCompatActivity() {
             //Seria que contiene los delegates
             val imageCatRecyclerAdapter = ListCatImageRecyclerViewAdapter(viewModel.listRowCatForRecycler)
             binding.reclyclerViewImageContainer.adapter = imageCatRecyclerAdapter
+            binding.progressBarLoadCats.visibility = View.GONE
         })
     }
 
