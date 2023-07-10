@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.portafolioHugoVillagra.portafoliokotlinactivity.R
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatImageRecyclerModel
 
-class ListCatImageRecyclerViewAdapter(private val dataSet: Array<CatImageRecyclerModel>)
+class ListCatImageRecyclerViewAdapter(private val dataSet: ArrayList<CatImageRecyclerModel>)
     : RecyclerView.Adapter<ListCatImageRecyclerViewAdapter.ViewHolder>() {
 
     /**
@@ -33,6 +33,8 @@ class ListCatImageRecyclerViewAdapter(private val dataSet: Array<CatImageRecycle
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.image_cat_row_recycler_view, viewGroup, false)
+        val height: Int = viewGroup.measuredHeight / dataSet.size
+        view.minimumHeight = height
 
         return ViewHolder(view)
     }

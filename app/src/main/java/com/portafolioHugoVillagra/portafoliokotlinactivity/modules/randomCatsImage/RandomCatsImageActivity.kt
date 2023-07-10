@@ -9,8 +9,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityRandomCatsImageBinding
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.adapters.ListCatImageRecyclerViewAdapter
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.interfaces.CatApi
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatImageRecyclerModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.viewModels.RandomCatsImageActivityViewModel
 import kotlinx.coroutines.GlobalScope
@@ -82,8 +86,21 @@ class RandomCatsImageActivity : AppCompatActivity() {
                     }
                 }
                 Log.d("Cantidad de gatos",viewModel.listRowCatForRecycler.size.toString())
+                createAdaptarAndAddToRecyclerView()
             }
         }
+    }
+
+    fun createAdaptarAndAddToRecyclerView() {
+        runOnUiThread(Runnable {
+            //Con esto se dice basicamente que establece donde se va a usar el recyclerView
+            binding.reclyclerViewImageContainer.layoutManager = LinearLayoutManager(this@RandomCatsImageActivity)
+
+            //Con esto se establecer un adaptador, es decir, una clase donde se establece como se va a cargar y como dibujar los elementos de recyclerView
+            //Seria que contiene los delegates
+            val imageCatRecyclerAdapter = ListCatImageRecyclerViewAdapter(viewModel.listRowCatForRecycler)
+            binding.reclyclerViewImageContainer.adapter = imageCatRecyclerAdapter
+        })
     }
 
 
