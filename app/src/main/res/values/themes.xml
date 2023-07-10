@@ -14,5 +14,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/backgroundColor</item>
 
+        <!-- Es una forma de establecer el backGround del Splash-->
+        <item name="android:windowBackground">@color/skyBlue</item>
     </style>
 </resources>

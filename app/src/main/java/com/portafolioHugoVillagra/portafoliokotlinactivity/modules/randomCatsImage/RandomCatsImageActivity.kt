@@ -92,6 +92,7 @@ class RandomCatsImageActivity : AppCompatActivity() {
     }
 
     fun createAdaptarAndAddToRecyclerView() {
+        //Esto es para forzar a ejecutar las acciones en plano principal, porque van a tocar elementos ui principales.
         runOnUiThread(Runnable {
             //Con esto se dice basicamente que establece donde se va a usar el recyclerView
             binding.reclyclerViewImageContainer.layoutManager = LinearLayoutManager(this@RandomCatsImageActivity)
