@@ -52,10 +52,8 @@ dependencies {
     //Fragment
     implementation("androidx.fragment:fragment-ktx:1.5.7")
 
-    //SplashScreen
-    implementation("androidx.core:core-splashscreen:1.0.0")
-
-
+    //Glyde
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

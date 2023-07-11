@@ -1,12 +1,16 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.adapters
 
 import android.view.LayoutInflater
+import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.portafolioHugoVillagra.portafoliokotlinactivity.R
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatImageRecyclerModel
 
@@ -47,23 +51,28 @@ class ListCatImageRecyclerViewAdapter(private val dataSet: ArrayList<CatImageRec
         //Aqui es donde configuramos los elementos de la fila
 
         //Agregamos el texto
-
         if (dataSet[position].informationCat == "null") {
             viewHolder.informationCat.text = ""
         } else {
             viewHolder.informationCat.text = dataSet[position].informationCat
         }
 
-
         //Agregamos la imagen
-        viewHolder.imageCat.setImageBitmap(dataSet[position].imageCatBitmap)
+        //Establecemos el radio de la imagen
+        val cornerRadius = RoundedCorners(16)
+        //Aplicamos el cornerRadius, y cargamos la imagen en el ImageView, con Glide.
+        Glide.with(viewHolder.imageCat.context)
+            .load(dataSet[position].imageCatBitmap)
+            .apply(RequestOptions.bitmapTransform(cornerRadius))
+            .into(viewHolder.imageCat)
 
         //Establecemos el tamaño de la fila del recyclerView
         val bitMapHeight = dataSet[position].imageCatBitmap.height //Tamaño del ImageView
         var heightText : Int = 100 //Tamaño del TextView
+        val totalHeight = bitMapHeight + heightText //Total de altura
 
         //Establecemos el tamaño de la fila
-        val layoutParam = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,bitMapHeight + heightText)
+        val layoutParam = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,totalHeight)
         viewHolder.constraintLayoutMain.layoutParams = layoutParam
     }
 
