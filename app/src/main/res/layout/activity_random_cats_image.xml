@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skyBlue"
+    tools:context=".modules.randomCatsImage.RandomCatsImageActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reclyclerViewImageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBarContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/skyBlue"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBarLoadCats"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/skyBlue"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            android:indeterminateTintMode="src_atop"></ProgressBar>
+
+        <TextView
+            android:id="@+id/textViewTitleProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Cargando michis"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</FrameLayout>
