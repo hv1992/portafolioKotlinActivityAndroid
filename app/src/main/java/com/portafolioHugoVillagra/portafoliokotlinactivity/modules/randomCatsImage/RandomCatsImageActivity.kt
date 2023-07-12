@@ -19,6 +19,7 @@ import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsIma
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatImageRecyclerModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.models.CatModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.viewModels.RandomCatsImageActivityViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -51,24 +52,23 @@ class RandomCatsImageActivity : AppCompatActivity() {
         this.getCats()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun getCats(){
         //Se crea el objeto con la cual se va a hacer la llamada
         val catApi = viewModel.catDownloader().create(CatApi::class.java)
         // launching a new coroutine para hacer asincrono.
         GlobalScope.launch {
             val result = catApi.getCats(viewModel.urlBaseCat, limit = viewModel.limitCats)
-            if (result != null) {
-                if (result!!.isSuccessful) {
-                    // Checking the results
-                    Log.d("Cats: ", result.body().toString())
-                    viewModel.listCats = result.body()
-                    createListCats()
-                }
-
+            if (result.isSuccessful) {
+                // Checking the results
+                Log.d("Cats: ", result.body().toString())
+                viewModel.listCats = result.body()
+                createListCats()
             }
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun createListCats() {
         this.viewModel.listCats.let {
             GlobalScope.launch {
@@ -78,13 +78,11 @@ class RandomCatsImageActivity : AppCompatActivity() {
                     val urlImageCat = viewModel.getUrlDownloadCat(cat.id)
                     //Se realiza la llamada para obtener la imagen del gato
                     val result = imageCatDownloader.downloadImageCat(urlImageCat)
-                    if (result != null) {
-                        if(result.isSuccessful) { //Esto es para comprobar si es exitoso o no
-                            val resultBody = result.body()?.byteStream() //Aqui se obtiene los bytes de la imagen obtenida
-                            val bitmapImageCat = BitmapFactory.decodeStream(resultBody)
-                            viewModel.addInformationCatToNewRowRecyclerView(bitmapImageCat,cat.owner)
-                            Log.d("Cantidad de gatos asincrono",viewModel.listRowCatForRecycler.size.toString())
-                        }
+                    if(result.isSuccessful) { //Esto es para comprobar si es exitoso o no
+                        val resultBody = result.body()?.byteStream() //Aqui se obtiene los bytes de la imagen obtenida
+                        val bitmapImageCat = BitmapFactory.decodeStream(resultBody)
+                        viewModel.addInformationCatToNewRowRecyclerView(bitmapImageCat,cat.owner)
+                        Log.d("Cantidad de gatos asincrono",viewModel.listRowCatForRecycler.size.toString())
                     }
                 }
                 Log.d("Cantidad de gatos",viewModel.listRowCatForRecycler.size.toString())
