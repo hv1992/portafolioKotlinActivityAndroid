@@ -43,7 +43,7 @@ class RandomCatsImageActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[RandomCatsImageActivityViewModel::class.java]
 
         //Se establece el titulo a mostrar en el actionBar
-        setTitle("Random Cat Images")
+        title = this.viewModel.titleActionBar
 
         //Se agrega el botón de volver atras
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.PortafolioKotlinActivity"
         tools:targetApi="31">
         <activity
-            android:name=".RandomDogImageActivity"
+            android:name=".modules.randomDogImage.RandomDogImageActivity"
             android:exported="false" />
         <activity
             android:name=".modules.randomCatsImage.RandomCatsImageActivity"

@@ -12,7 +12,9 @@ import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImag
 
 class DogRaceSelectorFragment : Fragment() {
 
+    //El companion object es para declarar elementos pripios de la clase, es decir, elementos que no forman de una instancia
     companion object {
+        //El newInstance es la instancia del fragmento, algo asi como el shared.
         fun newInstance() = DogRaceSelectorFragment()
     }
 

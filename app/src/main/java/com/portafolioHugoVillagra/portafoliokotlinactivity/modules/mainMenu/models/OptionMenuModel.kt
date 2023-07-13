@@ -1,4 +1,6 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.models
 
-data class OptionMenuModel(var iconName : String,var informationOption : String) {
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.constants.OptionMenuCode
+
+data class OptionMenuModel(var iconName : String,var informationOption : String,var optionCode : OptionMenuCode) {
 }

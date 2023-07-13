@@ -17,8 +17,10 @@ import android.widget.TextView
 import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityMainMenuBinding
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.constants.OptionMenuCode
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.viewModels.MainMenuViewModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.RandomCatsImageActivity
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.RandomDogImageActivity
 
 class MainMenuActivity : AppCompatActivity() {
 
@@ -83,9 +85,19 @@ class MainMenuActivity : AppCompatActivity() {
 
             binding.optionMenuContainerLayout.addView(linearLayout)
 
+            //Se prepara la acción a donde lleva dicho botón
             linearLayout.setOnClickListener {
-                val intent = Intent(this,RandomCatsImageActivity::class.java)
-                startActivity(intent)
+                when (optionMenu.optionCode) {
+                    OptionMenuCode.catImage -> {
+                        val intent = Intent(this,RandomCatsImageActivity::class.java)
+                        startActivity(intent)
+                    }
+                    OptionMenuCode.dogImage -> {
+                        val intent = Intent(this,RandomDogImageActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
             }
         }
     }
