@@ -7,8 +7,8 @@ import kotlin.collections.ArrayList
 class DogRaceSelectorViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
-    private var listMainRace : ArrayList<String> = arrayListOf()
-    private var listSubRace : ArrayList<String> = arrayListOf()
+    var listMainRace : Array<String> = emptyArray()
+    private var listSubRace : Array<String> = emptyArray()
 
     private var dogRaceSelected : String = ""
     private var subRaceDogSelected : String = ""
@@ -21,22 +21,27 @@ class DogRaceSelectorViewModel : ViewModel() {
     }
 
     private fun getMainRaces() {
-        this.listMainRace = arrayListOf()
-        this.listSubRace = arrayListOf()
-        for(mainRace in this.listRaceDogs.keys) {
-            this.listMainRace.add(mainRace)
+        this.listMainRace = emptyArray()
+        this.listSubRace = emptyArray()
+        val listDogTemp : ArrayList<String> = arrayListOf()
+
+        for (raceDog in this.listRaceDogs.keys) {
+            listDogTemp.add(raceDog)
         }
+
+        //Establece el listado de razas principales de perro
+        this.listMainRace = listDogTemp.toTypedArray()
+
+
     }
 
     public fun getSubRaces(mainRace : String) {
         this.dogRaceSelected = mainRace
-        this.listSubRace = arrayListOf()
+        this.listSubRace = emptyArray()
 
         //Esto lo que hace es poner un array vacio en caso de que no exista sub raza de perro
-        val listSubRace = this.listRaceDogs[mainRace] ?: emptyArray()
-        for(subRace in listSubRace) {
-            this.listSubRace.add(subRace)
-        }
+        this.listSubRace = this.listRaceDogs[mainRace] ?: emptyArray()
+
 
     }
 

@@ -25,7 +25,7 @@ class RandomDogImageActivityViewModel : ViewModel() {
             .build()
     }
     @OptIn(DelicateCoroutinesApi::class)
-    fun getRacesDog(actionAfterCall: (Map<String, Array<String>>) -> Int) {
+    fun getRacesDog(actionAfterCall: (Map<String, Array<String>>) -> Unit) {
         //Se crea el objeto con la cual se va a hacer la llamada
         val dogAPI = dogRaceDownloader().create(DogApi::class.java)
         GlobalScope.launch {

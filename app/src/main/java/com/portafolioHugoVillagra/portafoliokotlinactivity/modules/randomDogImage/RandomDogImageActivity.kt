@@ -2,7 +2,6 @@ package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogIma
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
@@ -38,9 +37,10 @@ class RandomDogImageActivity : AppCompatActivity() {
 
         this.addFragmentSelectorDogToFragmentContainer()
 
-        getRaceDogs()
+        this.getRaceDogs()
     }
 
+    //TODO: Configuración del contenedor del fragmento de selector de raza de perro.
     private fun addFragmentSelectorDogToFragmentContainer() {
         //Codigo para agregar un fragment al contenedor de fragment
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -48,13 +48,19 @@ class RandomDogImageActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun getRaceDogs() {
+    //TODO: Aqui es donde se obtiene la razas de perros, y se setea en el view model del fragmento.
+    private fun getRaceDogs() {
+        //Hace la llamada para obtener el listado de perros
         viewModel.getRacesDog() {
-            Log.d("Gola","aaa")
+            //Seteamos el listado de perros en el view model del fragment
+            this.selectorRaceDogFragment.viewModel.setListRaceDogs(listDog = it)
+
+            //Configuración el selector de raza principales de perro.
+            this.selectorRaceDogFragment.configureMainSpinner()
         }
     }
 
-    //Aqui es donde se configura la acción del botón volver del action bar.
+    //TODO: Aqui es donde se configura la acción del botón volver del action bar.
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
