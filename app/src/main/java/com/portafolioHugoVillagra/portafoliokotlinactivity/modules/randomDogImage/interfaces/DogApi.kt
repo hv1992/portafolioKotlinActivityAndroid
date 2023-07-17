@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Url
 
-interface RaceDogApi {
+interface DogApi {
 
     //TODO : Obtiene listado de razas de perro
     @GET

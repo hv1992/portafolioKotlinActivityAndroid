@@ -39,7 +39,6 @@ class DogRaceSelectorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DogRaceSelectorViewModel::class.java]
         // TODO: Use the ViewModel
-
     }
 
 //    override fun onActivityCreated(savedInstanceState: Bundle?) {

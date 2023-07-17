@@ -1,14 +1,12 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage
 
 
-import android.R
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
+import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityRandomDogImageBinding
-import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.viewModels.RandomCatsImageActivityViewModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.viewModels.RandomDogImageActivityViewModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.views.DogRaceSelectorFragment
 
@@ -17,7 +15,10 @@ class RandomDogImageActivity : AppCompatActivity() {
 
     lateinit  var binding : ActivityRandomDogImageBinding
 
-    var viewModel : RandomDogImageActivityViewModel = RandomDogImageActivityViewModel()
+    lateinit var viewModel : RandomDogImageActivityViewModel
+
+    //El newInstance trae el fragment instanciado del selector
+    var selectorRaceDogFragment : DogRaceSelectorFragment = DogRaceSelectorFragment.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,9 @@ class RandomDogImageActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //Creación del viewModel
+        viewModel = ViewModelProvider(this)[RandomDogImageActivityViewModel::class.java]
+
         //Se establece el titulo a mostrar en el actionBar
         title = this.viewModel.titleActionBar
 
@@ -33,18 +37,31 @@ class RandomDogImageActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         this.addFragmentSelectorDogToFragmentContainer()
+
+        getRaceDogs()
     }
 
-    fun addFragmentSelectorDogToFragmentContainer() {
+    private fun addFragmentSelectorDogToFragmentContainer() {
         //Codigo para agregar un fragment al contenedor de fragment
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.add(binding.frameContainerRaceDogSelector.id, DogRaceSelectorFragment.newInstance())
+        transaction.add(binding.frameContainerRaceDogSelector.id, this.selectorRaceDogFragment)
         transaction.commit()
+    }
+
+    fun getRaceDogs() {
+        viewModel.getRacesDog() {
+            Log.d("Gola","aaa")
+        }
     }
 
     //Aqui es donde se configura la acción del botón volver del action bar.
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 }

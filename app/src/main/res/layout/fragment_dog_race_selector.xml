@@ -10,22 +10,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--
+        Para crear un diseño lineal en el que cada campo secundario use la misma cantidad de espacio en la pantalla, define el android:layout_height de cada vista en "0dp" (para un diseño vertical) o el android:layout_width de cada vista en "0dp" (para un diseño horizontal). Luego, fija el android:layout_weight de cada vista en "1".
+        -->
         <LinearLayout
             android:id="@+id/linearLayoutRaceDogSelectorContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTitleRaceDogSpinner"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Raza principal Perro" />
 
             <Spinner
                 android:id="@+id/spinnerRaceDog"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -33,19 +37,20 @@
         <LinearLayout
             android:id="@+id/linearLayoutSubRaceDogContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textViewTitleSubRaceDog"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="Sub Raza Perro" />
 
             <Spinner
                 android:id="@+id/spinnerSubRaceDog"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </LinearLayout>
