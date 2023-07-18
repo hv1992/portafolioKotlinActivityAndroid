@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,12 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--El tools:layout es para definir con que layout fragment va a trabajar. Es necesario asociarlo para no dar error.-->
         <androidx.fragment.app.FragmentContainerView
-
             android:id="@+id/frameContainerRaceDogSelector"
             android.name="com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.views.DogRaceSelectorFragment"
             android:layout_width="match_parent"
             android:padding="@dimen/default_space_padding"
+            tools:layout="@layout/fragment_dog_race_selector"
             android:layout_height="wrap_content">
 
         </androidx.fragment.app.FragmentContainerView>
@@ -29,7 +31,11 @@
         <ImageView
             android:id="@+id/imageViewDogImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            app:cornerRadius="@dimen/default_corner_radius"
+            android:layout_marginLeft="@dimen/default_space_padding"
+            android:layout_marginRight="@dimen/default_space_padding"
+            android:layout_marginBottom="@dimen/default_space_padding"
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 

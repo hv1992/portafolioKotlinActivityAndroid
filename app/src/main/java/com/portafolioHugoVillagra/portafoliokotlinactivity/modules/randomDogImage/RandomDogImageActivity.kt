@@ -1,14 +1,23 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage
 
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityRandomDogImageBinding
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.adapters.ListCatImageRecyclerViewAdapter
+import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.interfaces.DogApi
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.viewModels.RandomDogImageActivityViewModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.views.DogRaceSelectorFragment
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class RandomDogImageActivity : AppCompatActivity() {
@@ -62,6 +71,28 @@ class RandomDogImageActivity : AppCompatActivity() {
             this.selectorRaceDogFragment.configureMainSpinner()
         }
     }
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun downloadImageDog(url : String) {
+        //Se crea el objeto con la cual se va a hacer la llamada
+        val dogAPI = viewModel.dogRaceImageDownloader(url).create(DogApi::class.java)
+        GlobalScope.launch {
+            val result = dogAPI.downloadImageDog(url)
+            if (result.isSuccessful) {
+                // Checking the results
+                Log.d("Resultado descarga","Exitoso")
+                val resultBody = result.body()?.byteStream()
+                val bitmapImageDog = BitmapFactory.decodeStream(resultBody)
+                configureImageViewDog(bitmapImageDog)
+            }
+        }
+    }
+
+    private fun configureImageViewDog(image : Bitmap) {
+        runOnUiThread(Runnable {
+            binding.imageViewDogImage.setImageBitmap(image)
+
+        })
+    }
 
     //TODO: Aqui es donde se configura la acción del botón volver del action bar.
     override fun onSupportNavigateUp(): Boolean {
@@ -77,6 +108,7 @@ class RandomDogImageActivity : AppCompatActivity() {
         this.selectorRaceDogFragment.viewModel.actionGetImage = { url ->
             viewModel.getUrlImageDog(url, actionAfterCall = {urlImage ->
                 Log.d("Url Imagen",urlImage)
+                this.downloadImageDog(urlImage)
             })
         }
     }

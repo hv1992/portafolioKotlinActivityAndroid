@@ -25,6 +25,15 @@ class RandomDogImageActivityViewModel : ViewModel() {
             .build()
     }
 
+    fun dogRaceImageDownloader(url : String) : Retrofit {
+        val baseUrl = "$url/"
+        return Retrofit.Builder().baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            // we need to add converter factory to
+            // convert JSON object to Java object
+            .build()
+    }
+
     private fun getUrlImageDogDownloader(url : String) : Retrofit {
         val baseUrl = "$url/"
         return Retrofit.Builder().baseUrl(baseUrl)

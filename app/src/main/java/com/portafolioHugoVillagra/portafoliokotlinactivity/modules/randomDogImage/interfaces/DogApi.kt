@@ -19,5 +19,5 @@ interface DogApi {
 
     //TODO : Obtiene la imagen del perro
     @GET
-    suspend fun donwloadImageDog(@Url url : String) : Response<ResponseBody>
+    suspend fun downloadImageDog(@Url url : String) : Response<ResponseBody>
 }

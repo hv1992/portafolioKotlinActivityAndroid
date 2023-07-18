@@ -1,5 +1,6 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlin.collections.ArrayList
 
@@ -76,14 +77,16 @@ class DogRaceSelectorViewModel : ViewModel() {
         var parametersRace : String
         var urlCreated : String
         if(this.dogRaceSelected.isNotEmpty() && this.subRaceDogSelected.isNotEmpty()) {
-            parametersRace = "$this.dogRaceSelected\$this.subRaceDogSelected"
+            parametersRace = "${this.dogRaceSelected}/${this.subRaceDogSelected}"
             urlCreated = "https://dog.ceo/api/breed/$parametersRace/images/random"
+            Log.d("Url descarga url imagen",urlCreated)
             this.actionGetImage?.let {
                 it(urlCreated)
             }
         } else if (this.dogRaceSelected.isNotEmpty()) {
             parametersRace = this.dogRaceSelected
             urlCreated = "https://dog.ceo/api/breed/$parametersRace/images/random"
+            Log.d("Url descarga url imagen",urlCreated)
             this.actionGetImage?.let {
                 it(urlCreated)
             }
