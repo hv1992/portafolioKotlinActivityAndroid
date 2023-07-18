@@ -48,7 +48,17 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DogRaceSelectorViewModel::class.java]
 
+        this.configureButtonGetDog()
+
+    }
+
+    //TODO: Configuración del botón de obtener imagen de perro.
+    private fun configureButtonGetDog() {
         binding.buttonGetImageDog.text = viewModel.titleButtonGetImageDog
+
+        binding.buttonGetImageDog.setOnClickListener {
+            this.viewModel.getUrlImageDog()
+        }
     }
 
     //TODO: Se configura el spinner de razas principales de perros.

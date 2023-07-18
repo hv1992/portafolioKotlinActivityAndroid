@@ -2,6 +2,7 @@ package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogIma
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +18,7 @@ class RandomDogImageActivity : AppCompatActivity() {
     lateinit var viewModel : RandomDogImageActivityViewModel
 
     //El newInstance trae el fragment instanciado del selector
-    var selectorRaceDogFragment : DogRaceSelectorFragment = DogRaceSelectorFragment.newInstance()
+    private var selectorRaceDogFragment : DogRaceSelectorFragment = DogRaceSelectorFragment.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,8 +69,15 @@ class RandomDogImageActivity : AppCompatActivity() {
         return true
     }
 
+    //TODO: Se ejecuta una vez que la pantalla esten todos presentes.
     override fun onStart() {
         super.onStart()
 
+        //Se configura aqui, porque aqui recien tenemos asignado el viewModel de fragment
+        this.selectorRaceDogFragment.viewModel.actionGetImage = { url ->
+            viewModel.getUrlImageDog(url, actionAfterCall = {urlImage ->
+                Log.d("Url Imagen",urlImage)
+            })
+        }
     }
 }

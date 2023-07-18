@@ -24,6 +24,15 @@ class RandomDogImageActivityViewModel : ViewModel() {
             // convert JSON object to Java object
             .build()
     }
+
+    private fun getUrlImageDogDownloader(url : String) : Retrofit {
+        val baseUrl = "$url/"
+        return Retrofit.Builder().baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            // we need to add converter factory to
+            // convert JSON object to Java object
+            .build()
+    }
     @OptIn(DelicateCoroutinesApi::class)
     fun getRacesDog(actionAfterCall: (Map<String, Array<String>>) -> Unit) {
         //Se crea el objeto con la cual se va a hacer la llamada
@@ -39,5 +48,18 @@ class RandomDogImageActivityViewModel : ViewModel() {
             }
         }
     }
-
+    @OptIn(DelicateCoroutinesApi::class)
+    fun getUrlImageDog(url: String,actionAfterCall: (String) -> Unit) {
+        //Se crea el objeto con la cual se va a hacer la llamada
+        val dogAPI = getUrlImageDogDownloader(url).create(DogApi::class.java)
+        GlobalScope.launch {
+            val result = dogAPI.getUrlImageDog(url)
+            if (result.isSuccessful) {
+                // Checking the results
+                Log.d("Dogs Races: ", result.body().toString())
+                //El ?: es para establecer que hacer en caso de que message sea null
+                actionAfterCall(result.body()?.message ?: "")
+            }
+        }
+    }
 }

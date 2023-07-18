@@ -70,9 +70,9 @@ class RandomCatsImageActivity : AppCompatActivity() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun createListCats() {
-        this.viewModel.listCats.let {
+        this.viewModel.listCats?.let {
             GlobalScope.launch {
-                for (cat in it!!) {
+                for (cat in it) {
                     val imageCatDownloader = viewModel.imageCatDownloader().create(CatApi::class.java)
 
                     val urlImageCat = viewModel.getUrlDownloadCat(cat.id)

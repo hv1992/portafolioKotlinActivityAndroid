@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ImageDogModel(
     @SerializedName("success")
-    val success : String,
+    val success : String?,
     @SerializedName("message")
-    val message : String
+    val message : String?
 )

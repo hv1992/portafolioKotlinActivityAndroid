@@ -9,6 +9,10 @@ class DogRaceSelectorViewModel : ViewModel() {
     val titleTextViewMainRace : String = "Raza principal"
     val titleTextViewSubRace : String = "Raza secundaria"
 
+    //El Unit es como decir que no vas a retornar nada.
+    var actionGetImage : ((String) -> Unit)? = null
+
+
     //TODO: Listado de razas de perros.
     private var listMainRace : Array<String> = emptyArray()
     private var listSubRace : Array<String> = emptyArray()
@@ -65,6 +69,25 @@ class DogRaceSelectorViewModel : ViewModel() {
 
     fun emptySubRaceDog() {
         this.subRaceDogSelected = ""
+    }
+
+    fun getUrlImageDog() {
+        //No hace falta inicializar
+        var parametersRace : String
+        var urlCreated : String
+        if(this.dogRaceSelected.isNotEmpty() && this.subRaceDogSelected.isNotEmpty()) {
+            parametersRace = "$this.dogRaceSelected\$this.subRaceDogSelected"
+            urlCreated = "https://dog.ceo/api/breed/$parametersRace/images/random"
+            this.actionGetImage?.let {
+                it(urlCreated)
+            }
+        } else if (this.dogRaceSelected.isNotEmpty()) {
+            parametersRace = this.dogRaceSelected
+            urlCreated = "https://dog.ceo/api/breed/$parametersRace/images/random"
+            this.actionGetImage?.let {
+                it(urlCreated)
+            }
+        }
     }
 
 }
