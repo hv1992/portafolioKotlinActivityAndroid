@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.FragmentDogRaceSelectorBinding
@@ -24,6 +25,8 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
     lateinit var viewModel: DogRaceSelectorViewModel
     private lateinit var spinnerMainRace : Spinner
     private lateinit var spinnerSubRace : Spinner
+    private lateinit var textViewMainSpinner : TextView
+    private lateinit var textViewSubSpinner : TextView
 
     //TODO: Binding del Fragmento
     private var _binding: FragmentDogRaceSelectorBinding? = null
@@ -51,6 +54,9 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
     //TODO: Se configura el spinner de razas principales de perros.
     fun configureMainSpinner() {
         this.spinnerMainRace = binding.spinnerRaceDog
+        this.textViewMainSpinner = binding.textViewTitleRaceDogSpinner
+
+        this.textViewMainSpinner.text = viewModel.titleTextViewMainRace
 
         //Esto es para que funcione la obtensión de lo seleccionado del spinner, por medio del AdapterView.OnItemSelectedListener
         this.spinnerMainRace.onItemSelectedListener = this
@@ -62,6 +68,9 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
             it.runOnUiThread(Runnable {
                 val adapter = ArrayAdapter(it.baseContext,android.R.layout.simple_list_item_1,viewModel.getListMainRace())
                 this.spinnerMainRace.adapter = adapter
+
+                this.spinnerMainRace.visibility = ViewGroup.VISIBLE
+                this.textViewMainSpinner.visibility = ViewGroup.VISIBLE
             })
         }
     }
@@ -70,7 +79,12 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
     private fun configureSubSpinner(position: Int) {
         viewModel.createListSubRaces(position = position)
 
+        viewModel.emptySubRaceDog()
+
         this.spinnerSubRace = binding.spinnerSubRaceDog
+        this.textViewSubSpinner = binding.textViewTitleSubRaceDog
+
+        this.textViewSubSpinner.text = viewModel.titleTextViewSubRace
 
         this.spinnerSubRace.onItemSelectedListener = this
 
@@ -78,6 +92,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         if(viewModel.getListSubRace().isNotEmpty()) {
             //Muestra el spinner secundario
             this.spinnerSubRace.visibility = ViewGroup.VISIBLE
+            this.textViewSubSpinner.visibility = ViewGroup.VISIBLE
 
             activity?.let {
                 //Esto es para que se pueda editar el UI.
@@ -89,6 +104,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         } else {
             //Oculta el spinner secundario
             this.spinnerSubRace.visibility = ViewGroup.INVISIBLE
+            this.textViewSubSpinner.visibility = ViewGroup.INVISIBLE
         }
     }
 

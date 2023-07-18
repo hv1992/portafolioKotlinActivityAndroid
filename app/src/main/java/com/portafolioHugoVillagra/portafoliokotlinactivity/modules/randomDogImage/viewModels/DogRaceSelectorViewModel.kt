@@ -6,6 +6,8 @@ import kotlin.collections.ArrayList
 class DogRaceSelectorViewModel : ViewModel() {
 
     val titleButtonGetImageDog : String = "Obtener Imagen"
+    val titleTextViewMainRace : String = "Raza principal"
+    val titleTextViewSubRace : String = "Raza secundaria"
 
     //TODO: Listado de razas de perros.
     private var listMainRace : Array<String> = emptyArray()
@@ -59,6 +61,10 @@ class DogRaceSelectorViewModel : ViewModel() {
 
     fun setSubRaceSelected(position : Int) {
         this.subRaceDogSelected = this.listSubRace[position]
+    }
+
+    fun emptySubRaceDog() {
+        this.subRaceDogSelected = ""
     }
 
 }
