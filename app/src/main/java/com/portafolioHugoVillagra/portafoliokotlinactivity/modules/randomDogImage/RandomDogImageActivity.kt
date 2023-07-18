@@ -35,9 +35,11 @@ class RandomDogImageActivity : AppCompatActivity() {
         //Se agrega el botón de volver atras
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        //Se carga el fragment de selector de raza de perro al container
         this.addFragmentSelectorDogToFragmentContainer()
 
         this.getRaceDogs()
+
     }
 
     //TODO: Configuración del contenedor del fragmento de selector de raza de perro.

@@ -45,13 +45,14 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[DogRaceSelectorViewModel::class.java]
 
+        binding.buttonGetImageDog.text = viewModel.titleButtonGetImageDog
     }
 
-    //TODO: Se configura el spinner de razas principales de perro.
+    //TODO: Se configura el spinner de razas principales de perros.
     fun configureMainSpinner() {
         this.spinnerMainRace = binding.spinnerRaceDog
 
-        //Esto es para que funcione la obtensión de lo seleccionado del spinner
+        //Esto es para que funcione la obtensión de lo seleccionado del spinner, por medio del AdapterView.OnItemSelectedListener
         this.spinnerMainRace.onItemSelectedListener = this
 
         //Se crea el arrayAdapter para que se adapter el listado al spinner.
@@ -59,9 +60,35 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         activity?.let {
             //Esto es para que se pueda editar el UI.
             it.runOnUiThread(Runnable {
-                val adapter = ArrayAdapter(it.baseContext,android.R.layout.simple_list_item_1,viewModel.listMainRace as Array<String>)
+                val adapter = ArrayAdapter(it.baseContext,android.R.layout.simple_list_item_1,viewModel.getListMainRace())
                 this.spinnerMainRace.adapter = adapter
             })
+        }
+    }
+
+    //TODO: Se configura el spinner de subrazas de perros.
+    private fun configureSubSpinner(position: Int) {
+        viewModel.createListSubRaces(position = position)
+
+        this.spinnerSubRace = binding.spinnerSubRaceDog
+
+        this.spinnerSubRace.onItemSelectedListener = this
+
+        //Activa a desactiva el spinner secundario si tiene
+        if(viewModel.getListSubRace().isNotEmpty()) {
+            //Muestra el spinner secundario
+            this.spinnerSubRace.visibility = ViewGroup.VISIBLE
+
+            activity?.let {
+                //Esto es para que se pueda editar el UI.
+                it.runOnUiThread(Runnable {
+                    val adapter = ArrayAdapter(it.baseContext,android.R.layout.simple_list_item_1,viewModel.getListSubRace())
+                    this.spinnerSubRace.adapter = adapter
+                })
+            }
+        } else {
+            //Oculta el spinner secundario
+            this.spinnerSubRace.visibility = ViewGroup.INVISIBLE
         }
     }
 
@@ -72,11 +99,16 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
 
     //TODO: Esto es para obtener el resultado de lo seleccionado del spinner
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.d("Entra: ","SI")
+        //El parent.id sirve para verificar que spinner se está usando
+        if (parent?.id == this.spinnerMainRace.id) {
+            configureSubSpinner(position)
+        } else if (parent?.id == this.spinnerSubRace.id) {
+            this.viewModel.setSubRaceSelected(position)
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-
+        Log.d("Nada","nada")
     }
 
 
