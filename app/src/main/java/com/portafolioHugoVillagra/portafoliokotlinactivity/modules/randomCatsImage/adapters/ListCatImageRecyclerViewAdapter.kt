@@ -1,7 +1,6 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.adapters
 
 import android.view.LayoutInflater
-import android.view.RoundedCorner
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -38,7 +37,7 @@ class ListCatImageRecyclerViewAdapter(private val dataSet: ArrayList<CatImageRec
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.image_cat_row_recycler_view, viewGroup, false)
+            .inflate(R.layout.view_image_cat_row_recycler, viewGroup, false)
         return ViewHolder(view)
     }
 

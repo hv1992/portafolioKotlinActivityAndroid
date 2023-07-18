@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.randomDogImage.views.DogRaceSelectorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background= "@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!--
+        Para crear un diseño lineal en el que cada campo secundario use la misma cantidad de espacio en la pantalla, define el android:layout_height de cada vista en "0dp" (para un diseño vertical) o el android:layout_width de cada vista en "0dp" (para un diseño horizontal). Luego, fija el android:layout_weight de cada vista en "1".
+        -->
+        <LinearLayout
+            android:id="@+id/linearLayoutRaceDogSelectorContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewTitleRaceDogSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:text="Raza principal Perro" />
+
+            <Spinner
+                android:id="@+id/spinnerRaceDog"
+                android:layout_width="0dp"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSubRaceDogContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewTitleSubRaceDog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:text="Sub Raza Perro" />
+
+            <!--Lo que hace android:layout_weight es establecer el tamaño de acuerdo a un tamaño por default.
+            Es decir, el que dice 1 toda el tamaño por default, y el que dice 1.5, toma el tamaño por default, y le agrega la mitad-->
+            <Spinner
+                android:id="@+id/spinnerSubRaceDog"
+                android:layout_width="0dp"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonGetImageDog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/skyBlue"
+            android:text="Button"
+            android:textColor="@color/white"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
+</FrameLayout>

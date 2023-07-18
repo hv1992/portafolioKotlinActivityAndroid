@@ -20,6 +20,7 @@ class RandomCatsImageActivityViewModel : ViewModel(){
     var listCats : List<CatModel>? = null
     var listRowCatForRecycler : ArrayList<CatImageRecyclerModel> = arrayListOf()
 
+    var titleActionBar : String = "Random Cat Images"
     fun catDownloader() : Retrofit {
         return Retrofit.Builder().baseUrl(urlBaseBuilder)
             .addConverterFactory(GsonConverterFactory.create())
