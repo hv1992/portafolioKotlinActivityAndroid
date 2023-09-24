@@ -29,15 +29,30 @@ class AboutAppMainActivity :AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[AboutAppMainViewModel::class.java]
 
+        // Con esto ocultamos la barra de navegación
+        try {
+            this.supportActionBar!!.hide()
+        } // catch block to handle NullPointerException
+        catch (e: NullPointerException) {
+        }
+
         configureTextOnTextViews()
 
         configureButtonLinkedid()
+
+        configureCloseButton()
     }
 
     override fun onStart() {
         super.onStart()
 
         configureImageAvatar()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        finishAfterTransition()
     }
 
     private fun configureTextOnTextViews() {
@@ -51,14 +66,14 @@ class AboutAppMainActivity :AppCompatActivity() {
     private fun configureImageAvatar(){
         val imageAvatar = this.binding.imageViewAvatarAbout
 
-        val cornerRadiusCal = imageAvatar.layoutParams.width / 2
-
-        val cornerRadius = RoundedCorners(cornerRadiusCal)
-        //Aplicamos el cornerRadius, y cargamos la imagen en el ImageView, con Glide.
-        Glide.with(imageAvatar.context)
-            .load("@drawable/avatar_creator")
-            .apply(RequestOptions.bitmapTransform(cornerRadius))
-            .into(imageAvatar)
+//        val cornerRadiusCal = imageAvatar.layoutParams.width / 2
+//
+//        val cornerRadiusNum = RoundedCorners(cornerRadiusCal)
+//        //Aplicamos el cornerRadius, y cargamos la imagen en el ImageView, con Glide.
+//        Glide.with(imageAvatar.context)
+//            .load("@drawable/avatar_creator")
+//            .apply(RequestOptions.bitmapTransform(cornerRadiusNum))
+//            .into(imageAvatar)
     }
 
     private fun configureButtonLinkedid() {
@@ -68,10 +83,18 @@ class AboutAppMainActivity :AppCompatActivity() {
         buttonLinkedId.setOnClickListener {
             val linkUrl : Uri = Uri.parse(this.viewModel.urlLinkedin)
 
-            val intent : Intent = Intent(Intent.ACTION_VIEW,linkUrl)
+            val intent = Intent(Intent.ACTION_VIEW,linkUrl)
 
             startActivity(intent)
 
+        }
+    }
+
+    fun configureCloseButton() {
+        val closeButton = this.binding.buttonCloseAbout
+
+        closeButton.setOnClickListener {
+            finishAfterTransition();
         }
     }
 }

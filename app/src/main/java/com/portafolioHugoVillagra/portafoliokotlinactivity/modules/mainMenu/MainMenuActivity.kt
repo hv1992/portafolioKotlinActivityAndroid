@@ -1,8 +1,10 @@
 package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu
 
+import android.R
+import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -11,12 +13,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityMainMenuBinding
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.constants.OptionMenuCode
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.viewModels.MainMenuViewModel
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomCatsImage.RandomCatsImageActivity
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.randomDogImage.RandomDogImageActivity
+
 
 class MainMenuActivity : AppCompatActivity() {
 
@@ -99,11 +103,24 @@ class MainMenuActivity : AppCompatActivity() {
         }
     }
 
-    fun configureButtonAboutApp() {
+    private fun configureButtonAboutApp() {
         val button : Button = this.binding.buttonAboutMain
 
         button.setOnClickListener {
             Log.d("Botton Acerca de", "Se está presionando")
+
+            val intent = Intent(this,AboutAppMainActivity::class.java)
+
+
+
+            // Check if we're running on Android 5.0 or higher
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            } else {
+                startActivity(intent)
+            }
+
+
         }
 
     }
