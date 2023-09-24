@@ -28,7 +28,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
     private lateinit var textViewMainSpinner : TextView
     private lateinit var textViewSubSpinner : TextView
 
-    //TODO: Binding del Fragmento
+    //  Binding del Fragmento
     private var _binding: FragmentDogRaceSelectorBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,7 +52,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
 
     }
 
-    //TODO: Configuración del botón de obtener imagen de perro.
+    //  Configuración del botón de obtener imagen de perro.
     private fun configureButtonGetDog() {
         binding.buttonGetImageDog.text = viewModel.titleButtonGetImageDog
 
@@ -61,7 +61,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         }
     }
 
-    //TODO: Se configura el spinner de razas principales de perros.
+    //  Se configura el spinner de razas principales de perros.
     fun configureMainSpinner() {
         this.spinnerMainRace = binding.spinnerRaceDog
         this.textViewMainSpinner = binding.textViewTitleRaceDogSpinner
@@ -85,7 +85,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         }
     }
 
-    //TODO: Se configura el spinner de subrazas de perros.
+    //  Se configura el spinner de subrazas de perros.
     private fun configureSubSpinner(position: Int) {
         viewModel.createListSubRaces(position = position)
 
@@ -123,7 +123,7 @@ class DogRaceSelectorFragment : Fragment(),AdapterView.OnItemSelectedListener {
         _binding = null
     }
 
-    //TODO: Esto es para obtener el resultado de lo seleccionado del spinner
+    //  Esto es para obtener el resultado de lo seleccionado del spinner
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         //El parent.id sirve para verificar que spinner se está usando
         if (parent?.id == this.spinnerMainRace.id) {

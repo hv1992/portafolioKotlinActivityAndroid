@@ -16,5 +16,15 @@
 
         <!-- Es una forma de establecer el backGround del Splash-->
         <item name="android:windowBackground">@color/skyBlue</item>
+
+
+        <!--Transicion-->
+        <!-- Habilitamos la transición de ventana -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!--Establecemos el tipo de animación que queremos implementar-->
+        <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
+        <item name="android:windowExitTransition">@android:transition/slide_top</item>
+
     </style>
 </resources>

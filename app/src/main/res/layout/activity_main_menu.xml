@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -46,10 +47,12 @@
                 android:text="TextView" />
         </LinearLayout>
 
+        <!--Pongo el android:layout_weight para decir que este me dé mas espacio-->
         <LinearLayout
             android:id="@+id/linearLayoutMenuContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -68,5 +71,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"></LinearLayout>
         </LinearLayout>
+
+        <!--Con el android:backgroud remuevo la sobra del botón-->
+        <!--Se encierra con /> cuando es un elemento, y en el otro caso, cuando es un layout-->
+        <Button
+            android:id="@+id/buttonAboutMain"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/skyBlue"
+            android:text="Acerca de"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

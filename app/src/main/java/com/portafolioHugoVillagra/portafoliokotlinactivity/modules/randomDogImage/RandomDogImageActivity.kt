@@ -52,7 +52,7 @@ class RandomDogImageActivity : AppCompatActivity() {
 
     }
 
-    //TODO: Configuración del contenedor del fragmento de selector de raza de perro.
+    //  Configuración del contenedor del fragmento de selector de raza de perro.
     private fun addFragmentSelectorDogToFragmentContainer() {
         //Codigo para agregar un fragment al contenedor de fragment
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -60,7 +60,7 @@ class RandomDogImageActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    //TODO: Aqui es donde se obtiene la razas de perros, y se setea en el view model del fragmento.
+    //  Aqui es donde se obtiene la razas de perros, y se setea en el view model del fragmento.
     private fun getRaceDogs() {
         //Hace la llamada para obtener el listado de perros
         viewModel.getRacesDog() {
@@ -94,13 +94,13 @@ class RandomDogImageActivity : AppCompatActivity() {
         })
     }
 
-    //TODO: Aqui es donde se configura la acción del botón volver del action bar.
+    //  Aqui es donde se configura la acción del botón volver del action bar.
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
     }
 
-    //TODO: Se ejecuta una vez que la pantalla esten todos presentes.
+    //  Se ejecuta una vez que la pantalla esten todos presentes.
     override fun onStart() {
         super.onStart()
 
