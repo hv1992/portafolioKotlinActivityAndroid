@@ -2,19 +2,15 @@ package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable.Orientation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout.Alignment
+import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.LinearLayout.LayoutParams
 import android.widget.TextView
-import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityMainMenuBinding
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.constants.OptionMenuCode
@@ -48,6 +44,7 @@ class MainMenuActivity : AppCompatActivity() {
         setupHeader()
         setupMenu()
         setupOptions()
+        configureButtonAboutApp()
     }
 
     fun setupHeader() {
@@ -100,5 +97,14 @@ class MainMenuActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    fun configureButtonAboutApp() {
+        val button : Button = this.binding.buttonAboutMain
+
+        button.setOnClickListener {
+            Log.d("Botton Acerca de", "Se está presionando")
+        }
+
     }
 }

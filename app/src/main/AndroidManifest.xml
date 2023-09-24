@@ -21,6 +21,9 @@
             android:name=".modules.randomCatsImage.RandomCatsImageActivity"
             android:exported="false" />
         <activity
+            android:name=".modules.mainMenu.AboutAppMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".modules.mainMenu.MainMenuActivity"
             android:exported="true">
             <intent-filter>
