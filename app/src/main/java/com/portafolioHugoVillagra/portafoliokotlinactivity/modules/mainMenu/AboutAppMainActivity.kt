@@ -2,14 +2,18 @@ package com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu
 
 import android.content.Intent
 import android.graphics.drawable.ClipDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.OvalShape
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.portafolioHugoVillagra.portafoliokotlinactivity.R
 import com.portafolioHugoVillagra.portafoliokotlinactivity.databinding.ActivityAboutAppMainBinding
 import com.portafolioHugoVillagra.portafoliokotlinactivity.modules.mainMenu.viewModels.AboutAppMainViewModel
 
@@ -43,12 +47,7 @@ class AboutAppMainActivity :AppCompatActivity() {
         configureCloseButton()
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        configureImageAvatar()
-    }
-
+    //TODO: Cambiar el onBackPressed a la nueva versión, ya que está deprecado
     override fun onBackPressed() {
         super.onBackPressed()
 
@@ -61,19 +60,6 @@ class AboutAppMainActivity :AppCompatActivity() {
 
         titleTextView.text = this.viewModel.titleAboutApp
         informationTextView.text = this.viewModel.informationAboutApp
-    }
-
-    private fun configureImageAvatar(){
-        val imageAvatar = this.binding.imageViewAvatarAbout
-
-//        val cornerRadiusCal = imageAvatar.layoutParams.width / 2
-//
-//        val cornerRadiusNum = RoundedCorners(cornerRadiusCal)
-//        //Aplicamos el cornerRadius, y cargamos la imagen en el ImageView, con Glide.
-//        Glide.with(imageAvatar.context)
-//            .load("@drawable/avatar_creator")
-//            .apply(RequestOptions.bitmapTransform(cornerRadiusNum))
-//            .into(imageAvatar)
     }
 
     private fun configureButtonLinkedid() {

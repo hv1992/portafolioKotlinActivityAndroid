@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class AboutAppMainViewModel : ViewModel() {
     val titleAboutApp : String = "Hugo Alejandro Sebastián Villagra Bogarín"
-    val informationAboutApp = "Esta app tiene la misión de mostrar lo que puedo hacer con swiftUI. La misma está hecho bajo la arquitectura MVVM"
+    val informationAboutApp = "Esta app tiene la misión de mostrar lo que puedo hacer con Kotlin con Activities. La misma está hecho bajo la arquitectura MVVM"
     val titleLinkGoToLinkedIn : String = "Mi linkedIn (Presione Aqui)"
 
 
