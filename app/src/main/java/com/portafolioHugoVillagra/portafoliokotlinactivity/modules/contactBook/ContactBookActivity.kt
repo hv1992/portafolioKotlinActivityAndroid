@@ -25,4 +25,7 @@ class ContactBookActivity : AppCompatActivity() {
         //Se agrega el viewModel
         viewModel = ViewModelProvider(this)[ContactBookViewModel::class.java]
     }
+
+
+
 }
