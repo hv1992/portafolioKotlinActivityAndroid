@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/skyBlue"
+            android:backgroundTint="@color/background_button"
             android:text="Button"
             android:textColor="@color/white"
             app:cornerRadius="8dp" />

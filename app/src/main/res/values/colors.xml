@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="skyBlue">#26a7de</color>
+    <color name="background_button">#007AFF</color>
 </resources>

@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">PortafolioKotlinActivity</string>
     <string name="logo_header_main_view">Logo Header Main View</string>
+
+    <string name="title_close_button">\u2573 Cerrar</string>
+
+    <!--Texto para la pantalla de agregar contacto-->
+    <string name="title_camp_name">Nombre: </string>
+    <string name="title_camp_last_name">Apellido: </string>
+    <string name="title_camp_phone">Telefono: </string>
+    <string name="title_camp_email">Email: </string>
+    <string name="title_add_contact_button">Agregar contacto</string>
+    <string name="title_popup_add_contact">Agregar contacto</string>
 </resources>
